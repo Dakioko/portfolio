@@ -185,3 +185,5 @@ document.addEventListener('DOMContentLoaded', function() {
 });
     }
 });
+// Auto-update year in footer
+document.getElementById('current-year').textContent = new Date().getFullYear();

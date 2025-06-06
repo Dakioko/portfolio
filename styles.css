@@ -591,9 +591,16 @@ nav ul li a:hover::after {
 
 /* Footer */
 footer {
-    background-color: var(--dark-color);
-    color: white;
-    padding: 80px 0 20px;
+    background: var(--dark-color);
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9rem;
+}
+
+footer p {
+    margin: 0;
+    color: inherit;
 }
 
 .footer-content {
