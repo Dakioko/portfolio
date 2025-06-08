@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
 
     observer.observe(skillsSection);
-
+    
     // Updated Project Data with Categories
     const projects = [
         {
@@ -185,5 +185,3 @@ document.addEventListener('DOMContentLoaded', function() {
 });
     }
 });
-// Auto-update year in footer
-document.getElementById('current-year').textContent = new Date().getFullYear();

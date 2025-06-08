@@ -280,6 +280,7 @@ nav ul li a:hover::after {
 
 .hero-image {
     flex: 1;
+    width: 100%; /* Ensures it takes full width on mobile */
 }
 
 .image-placeholder {
@@ -424,6 +425,7 @@ nav ul li a:hover::after {
 
 .about-image {
     flex: 1;
+    width: 100%; /* Ensures full width on mobile */
 }
 
 .about-content {
@@ -704,7 +706,32 @@ footer p {
     .contact-container {
         flex-direction: column;
     }
+       .hero .container {
+        flex-direction: column;
+    }
+    
+    .hero-image {
+        width: 100%;
+        margin-top: 30px;
+    }
+    
+    .image-placeholder {
+        height: 300px; /* Fixed height for mobile */
+    }
+    .about .container {
+        flex-direction: column;
+    }
+
+    .about-image {
+        width: 100%;
+        margin-bottom: 30px; /* Adds space between image and content */
+    }
+
+    .about-image .image-placeholder {
+        height: 300px; /* Fixed height for mobile */
+    }
 }
+
 
 @media (max-width: 768px) {
     .hamburger {
