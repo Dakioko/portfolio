@@ -284,7 +284,7 @@ nav ul li a:hover::after {
 }
 
 .image-placeholder {
-    width: 100%;
+    width: 80%;
     height: 400px;
     background-color: var(--primary-color);
     border-radius: 20px;
@@ -731,7 +731,14 @@ footer p {
         height: 300px; /* Fixed height for mobile */
     }
 }
+.hero .image-placeholder {
+    background: url('images/img_4_1.png') center/cover no-repeat;
+}
 
+/* About Image */
+.about .image-placeholder {
+    background: url('images/about.png') center/cover no-repeat;
+}
 
 @media (max-width: 768px) {
     .hamburger {
