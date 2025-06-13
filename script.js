@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile menu toggle (keep existing)
+    // Mobile menu toggle
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('nav ul');
 
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         navMenu.classList.toggle('active');
     });
 
-    // Close mobile menu when clicking on a link (keep existing)
+    // Close mobile menu when clicking on a link
     document.querySelectorAll('nav ul li a').forEach(link => {
         link.addEventListener('click', function() {
             hamburger.classList.remove('active');
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Header scroll effect (keep existing)
+    // Header scroll effect
     window.addEventListener('scroll', function() {
         const header = document.querySelector('header');
         if (window.scrollY > 50) {
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Animate skill bars when they come into view (keep existing)
+    // Animate skill bars when they come into view
     const skillBars = document.querySelectorAll('.skill-level');
     
     function animateSkillBars() {
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Intersection Observer for skill bars animation (keep existing)
+    // Intersection Observer for skill bars animation
     const skillsSection = document.querySelector('.skills');
     const observerOptions = {
         threshold: 0.5
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     observer.observe(skillsSection);
     
-    // Updated Project Data with Categories
+    // Project Data with Categories
     const projects = [
         {
             title: "E-commerce Platform",
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     ];
 
-    // Render Projects with Filtering
+    // Render Projects with Filtering and Staggered Animations
     function renderProjects(filter = "all") {
         const grid = document.querySelector(".projects-grid");
         grid.innerHTML = "";
@@ -123,10 +123,14 @@ document.addEventListener('DOMContentLoaded', function() {
             ? projects 
             : projects.filter(p => p.category === filter);
 
-        filteredProjects.forEach(project => {
+        filteredProjects.forEach((project, index) => {
             const card = document.createElement("div");
             card.className = "project-card";
             card.dataset.category = project.category;
+            card.style.opacity = "0";
+            card.style.transform = "translateY(20px)";
+            card.style.transition = `opacity 0.6s ease-out ${index * 0.1}s, transform 0.6s ease-out ${index * 0.1}s`;
+            
             card.innerHTML = `
                 <div class="project-image">
                     <img src="${project.image}" alt="${project.title}" loading="lazy">
@@ -144,6 +148,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             `;
             grid.appendChild(card);
+            
+            // Trigger reflow to enable animation
+            setTimeout(() => {
+                card.style.opacity = "1";
+                card.style.transform = "translateY(0)";
+            }, 50);
         });
     }
 
@@ -163,25 +173,74 @@ document.addEventListener('DOMContentLoaded', function() {
     renderProjects();
     setupFilters();
 
-    // Form submission (keep existing)
+    // Form submission
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    showToast('Thank you for your message! I will get back to you soon.');
-    this.reset();
-});
+            e.preventDefault();
+            showToast('Thank you for your message! I will get back to you soon.');
+            this.reset();
+        });
     }
     
-
-    // Newsletter form submission (keep existing)
+    // Newsletter form submission
     const newsletterForm = document.querySelector('.footer-newsletter form');
     if (newsletterForm) {
-       newsletterForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const emailInput = this.querySelector('input');
-    showToast(`Thank you for subscribing with ${emailInput.value}!`);
-    emailInput.value = '';
-});
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const emailInput = this.querySelector('input');
+            showToast(`Thank you for subscribing with ${emailInput.value}!`);
+            emailInput.value = '';
+        });
     }
+
+    // Scroll-triggered animations for sections
+    const sections = document.querySelectorAll('section:not(#home)');
+    
+    function checkScroll() {
+        const triggerBottom = window.innerHeight / 5 * 4;
+        
+        sections.forEach(section => {
+            const sectionTop = section.getBoundingClientRect().top;
+            
+            if (sectionTop < triggerBottom) {
+                section.classList.add('visible');
+            }
+        });
+    }
+    
+    // Debounce scroll event for better performance
+    let isScrolling;
+    window.addEventListener('scroll', function() {
+        window.clearTimeout(isScrolling);
+        isScrolling = setTimeout(checkScroll, 66);
+    }, false);
+    
+    // Initial check on load
+    checkScroll();
+    
+    // Dark Mode Toggle
+    const darkModeToggle = document.createElement('button');
+    darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+    darkModeToggle.classList.add('dark-mode-toggle');
+    document.body.appendChild(darkModeToggle);
+
+    darkModeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        darkModeToggle.innerHTML = document.body.classList.contains('dark-mode') 
+            ? '<i class="fas fa-sun"></i>' 
+            : '<i class="fas fa-moon"></i>';
+    });
 });
+
+// Toast notification function
+function showToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'toast-message';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.remove();
+    }, 3000);
+}
