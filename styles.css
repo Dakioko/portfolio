@@ -824,3 +824,7 @@ footer p {
 .about .image-placeholder {
     background: url('images/2.png') center/cover no-repeat;
 }
+/* Honeypot field hiding */
+.hidden {
+    display: none;
+}
