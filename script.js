@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="project-links">
                         ${project.videoId ? 
                             `<button onclick="showVideoModal('${project.videoId}')" class="btn primary" aria-label="Watch ${project.title} demo">
-                                <i class="fas fa-play"></i> Watch Demo
+                                <i class="fas fa-play"></i> Live Demo
                             </button>` : 
                             `<a href="${project.liveUrl}" class="btn primary" aria-label="View ${project.title} live demo">Live Demo</a>`
                         }
