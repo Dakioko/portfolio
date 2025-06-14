@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     hamburger.addEventListener('click', function() {
         this.classList.toggle('active');
+        this.setAttribute('aria-expanded', this.classList.contains('active'));
         navMenu.classList.toggle('active');
     });
 
@@ -12,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('nav ul li a').forEach(link => {
         link.addEventListener('click', function() {
             hamburger.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
             navMenu.classList.remove('active');
         });
     });
@@ -25,6 +27,43 @@ document.addEventListener('DOMContentLoaded', function() {
             header.classList.remove('scrolled');
         }
     });
+
+    // Dark Mode Toggle
+    const darkModeToggle = document.createElement('button');
+    darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+    darkModeToggle.classList.add('dark-mode-toggle');
+    darkModeToggle.setAttribute('aria-label', 'Toggle dark mode');
+    document.body.appendChild(darkModeToggle);
+
+    // Check for saved preference or system preference
+    const savedMode = localStorage.getItem('darkMode');
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedMode === 'dark' || (!savedMode && systemDark)) {
+        enableDarkMode();
+    }
+
+    darkModeToggle.addEventListener('click', toggleDarkMode);
+
+    function enableDarkMode() {
+        document.body.classList.add('dark-mode');
+        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        localStorage.setItem('darkMode', 'dark');
+    }
+
+    function disableDarkMode() {
+        document.body.classList.remove('dark-mode');
+        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        localStorage.setItem('darkMode', 'light');
+    }
+
+    function toggleDarkMode() {
+        if (document.body.classList.contains('dark-mode')) {
+            disableDarkMode();
+        } else {
+            enableDarkMode();
+        }
+    }
 
     // Animate skill bars when they come into view
     const skillBars = document.querySelectorAll('.skill-level');
@@ -54,34 +93,45 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
 
-    observer.observe(skillsSection);
+    if (skillsSection) {
+        observer.observe(skillsSection);
+    }
     
     // Project Data with Categories
     const projects = [
         {
-            title: "E-commerce Platform",
-            description: "A full-featured online store with product listings, cart functionality, and secure checkout.",
-            category: "web",
-            tags: ["React", "Node.js", "MongoDB", "Stripe"],
-            image: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+            title: "SCHOOLPro",
+            description: "A streamlined school management system that handles student records, exam reports, fee payments, and instant SMS updates to parents.",
+            category: "Desktop",
+            tags: ["C#", "SQL Server", "SMS Integration"],
+            image: "images/schoolpro.avif",
             liveUrl: "#",
             codeUrl: "#"
         },
         {
-            title: "Task Management App",
-            description: "A productivity application for organizing tasks with drag-and-drop functionality and team collaboration.",
-            category: "web",
-            tags: ["Vue.js", "Firebase", "Tailwind CSS"],
-            image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+            title: "EPL Race Chart",
+            description: "Dynamic Python visualizations that bring football seasons to life — watch teams climb and fall across 38 matchweeks in seconds.",
+            category: "data",
+            tags: ["Python", "Pandas", "Matplotlib", "Web Scraping"],
+            image: "/images/race_chart.png",
+            videoId: "ejXOeJgTM9o",
+            codeUrl: "#"
+        },
+        {
+            title: "Climate Finance Watch",
+            description: "A Django-powered tool designed to promote transparency and accountability in climate finance in Kenya.",
+            category: "Web",
+            tags: ["Django", "PostgreSQL", "D3.js", "Data Visualization"],
+            image: "images/climate.avif",
             liveUrl: "#",
             codeUrl: "#"
         },
         {
-            title: "Weather Dashboard",
-            description: "Real-time weather information with 5-day forecast using data from a weather API.",
-            category: "web",
-            tags: ["JavaScript", "API", "CSS3"],
-            image: "https://images.unsplash.com/photo-1601134467661-3d775b999c8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+            title: "Library Pro",
+            description: "A Django-powered system with RFID tracking, predictive search, and streamlined borrowing.",
+            category: "Web",
+            tags: ["Django", "Python", "Bootstrap", "jQuery"],
+            image: "images/lib.jpg",
             liveUrl: "#",
             codeUrl: "#"
         },
@@ -90,38 +140,31 @@ document.addEventListener('DOMContentLoaded', function() {
             description: "Analytics dashboard for social media metrics with interactive charts and data visualization.",
             category: "data",
             tags: ["React", "Chart.js", "REST API"],
-            image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+            image: "images/social.avif",
             liveUrl: "#",
             codeUrl: "#"
         },
         {
-            title: "Recipe Finder App",
-            description: "Search for recipes based on ingredients with filtering options and nutritional information.",
-            category: "data",
-            tags: ["React Native", "Edamam API", "Redux"],
-            image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
-            liveUrl: "#",
-            codeUrl: "#"
-        },
-        {
-            title: "Portfolio Website",
-            description: "A responsive portfolio website to showcase my work and skills (this website!).",
+            title: "Weather Dashboard",
+            description: "Real-time weather information with 5-day forecast using data from a weather API.",
             category: "web",
-            tags: ["HTML5", "CSS3", "JavaScript"],
-            image: "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+            tags: ["JavaScript", "API", "CSS3"],
+            image: "images/climate.avif",
             liveUrl: "#",
             codeUrl: "#"
         }
     ];
 
     // Render Projects with Filtering and Staggered Animations
-    function renderProjects(filter = "all") {
+    function renderProjects(filters = []) {
         const grid = document.querySelector(".projects-grid");
+        if (!grid) return;
+        
         grid.innerHTML = "";
 
-        const filteredProjects = filter === "all" 
+        const filteredProjects = filters.length === 0 
             ? projects 
-            : projects.filter(p => p.category === filter);
+            : projects.filter(p => filters.includes(p.category));
 
         filteredProjects.forEach((project, index) => {
             const card = document.createElement("div");
@@ -133,7 +176,12 @@ document.addEventListener('DOMContentLoaded', function() {
             
             card.innerHTML = `
                 <div class="project-image">
-                    <img src="${project.image}" alt="${project.title}" loading="lazy">
+                    <img src="${project.image}" alt="${project.title}" loading="lazy" width="350" height="200">
+                    ${project.videoId ? 
+                        `<div class="play-overlay" onclick="showVideoModal('${project.videoId}')" role="button" aria-label="Play ${project.title} demo">
+                            <i class="fas fa-play-circle"></i>
+                        </div>` : ''
+                    }
                 </div>
                 <div class="project-info">
                     <h3>${project.title}</h3>
@@ -142,14 +190,19 @@ document.addEventListener('DOMContentLoaded', function() {
                         ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join("")}
                     </div>
                     <div class="project-links">
-                        <a href="${project.liveUrl}" class="btn primary">Live Demo</a>
-                        <a href="${project.codeUrl}" class="btn secondary">View Code</a>
+                        ${project.videoId ? 
+                            `<button onclick="showVideoModal('${project.videoId}')" class="btn primary" aria-label="Watch ${project.title} demo">
+                                <i class="fas fa-play"></i> Watch Demo
+                            </button>` : 
+                            `<a href="${project.liveUrl}" class="btn primary" aria-label="View ${project.title} live demo">Live Demo</a>`
+                        }
+                        <a href="${project.codeUrl}" class="btn secondary" aria-label="View ${project.title} source code">More Details</a>
                     </div>
                 </div>
             `;
+            
             grid.appendChild(card);
             
-            // Trigger reflow to enable animation
             setTimeout(() => {
                 card.style.opacity = "1";
                 card.style.transform = "translateY(0)";
@@ -157,14 +210,38 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Setup Filter Buttons
+    // Setup Filter Buttons with multi-select capability
     function setupFilters() {
         const buttons = document.querySelectorAll(".filter-btn");
+        if (!buttons.length) return;
+        
+        let activeFilters = [];
+        
         buttons.forEach(button => {
             button.addEventListener("click", () => {
-                buttons.forEach(btn => btn.classList.remove("active"));
-                button.classList.add("active");
-                renderProjects(button.dataset.filter);
+                const filter = button.dataset.filter;
+                
+                if (filter === "all") {
+                    activeFilters = [];
+                    buttons.forEach(btn => btn.classList.remove("active"));
+                    button.classList.add("active");
+                } else {
+                    button.classList.toggle("active");
+                    if (button.classList.contains("active")) {
+                        activeFilters.push(filter);
+                    } else {
+                        activeFilters = activeFilters.filter(f => f !== filter);
+                    }
+                    
+                    const allBtn = document.querySelector('[data-filter="all"]');
+                    if (activeFilters.length === 0) {
+                        allBtn.classList.add("active");
+                    } else {
+                        allBtn.classList.remove("active");
+                    }
+                }
+                
+                renderProjects(activeFilters);
             });
         });
     }
@@ -173,27 +250,42 @@ document.addEventListener('DOMContentLoaded', function() {
     renderProjects();
     setupFilters();
 
-    // Form submission
-    const contactForm = document.querySelector('.contact-form');
+    // Form submission with proper Netlify handling
+    const contactForm = document.getElementById('contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
-            showToast('Thank you for your message! I will get back to you soon.');
-            this.reset();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+            
+            try {
+                const formData = new FormData(this);
+                
+                const response = await fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(formData).toString()
+                });
+                
+                if (response.ok) {
+                    showToast('Message sent successfully!');
+                    this.reset();
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            } catch (error) {
+                showToast('Error sending message. Please try again later.', 'error');
+                console.error('Form submission error:', error);
+            } finally {
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+            }
         });
     }
     
-    // Newsletter form submission
-    const newsletterForm = document.querySelector('.footer-newsletter form');
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const emailInput = this.querySelector('input');
-            showToast(`Thank you for subscribing with ${emailInput.value}!`);
-            emailInput.value = '';
-        });
-    }
-
     // Scroll-triggered animations for sections
     const sections = document.querySelectorAll('section:not(#home)');
     
@@ -218,29 +310,88 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initial check on load
     checkScroll();
-    
-    // Dark Mode Toggle
-    const darkModeToggle = document.createElement('button');
-    darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-    darkModeToggle.classList.add('dark-mode-toggle');
-    document.body.appendChild(darkModeToggle);
-
-    darkModeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-        darkModeToggle.innerHTML = document.body.classList.contains('dark-mode') 
-            ? '<i class="fas fa-sun"></i>' 
-            : '<i class="fas fa-moon"></i>';
-    });
 });
 
-// Toast notification function
-function showToast(message) {
+// Toast notification function with type support
+function showToast(message, type = 'success') {
     const toast = document.createElement('div');
-    toast.className = 'toast-message';
+    toast.className = `toast-message ${type}`;
     toast.textContent = message;
+    toast.setAttribute('aria-live', 'polite');
     document.body.appendChild(toast);
     
     setTimeout(() => {
         toast.remove();
     }, 3000);
 }
+
+// Video Modal Functions
+function showVideoModal(videoId) {
+    const modal = document.getElementById('video-modal');
+    const iframe = document.getElementById('youtube-iframe');
+    
+    if (!modal || !iframe) return;
+    
+    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`;
+    iframe.setAttribute('title', 'YouTube video player');
+    iframe.setAttribute('allowfullscreen', '');
+    
+    modal.style.display = "block";
+    document.body.style.overflow = "hidden";
+    modal.setAttribute('aria-hidden', 'false');
+    
+    // Focus trap for accessibility
+    const closeBtn = modal.querySelector('.close-btn');
+    closeBtn.focus();
+    
+    modal.addEventListener('keydown', function trapFocus(e) {
+        if (e.key === 'Escape') {
+            closeVideo();
+        }
+        
+        if (e.key === 'Tab') {
+            if (e.shiftKey && document.activeElement === closeBtn) {
+                e.preventDefault();
+                iframe.focus();
+            } else if (!e.shiftKey && document.activeElement === iframe) {
+                e.preventDefault();
+                closeBtn.focus();
+            }
+        }
+    });
+}
+
+function closeVideo() {
+    const modal = document.getElementById('video-modal');
+    const iframe = document.getElementById('youtube-iframe');
+    
+    if (!modal || !iframe) return;
+    
+    iframe.src = "";
+    modal.style.display = "none";
+    document.body.style.overflow = "auto";
+    modal.setAttribute('aria-hidden', 'true');
+}
+
+// Close modal when clicking outside content
+document.addEventListener('click', function(e) {
+    const modal = document.getElementById('video-modal');
+    if (modal && e.target === modal) {
+        closeVideo();
+    }
+});
+
+// Close with ESC key
+document.addEventListener('keydown', function(e) {
+    if (e.key === "Escape") {
+        closeVideo();
+    }
+});
+
+// Auto-update copyright year
+window.addEventListener('DOMContentLoaded', function() {
+    const yearElement = document.getElementById('current-year');
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+});

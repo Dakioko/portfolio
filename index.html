@@ -1,31 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Stephen Kioko - Software Engineer specializing in web development, data analysis, and machine learning solutions." />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Stephen Kioko - Software Engineer specializing in web development, data analysis, and machine learning solutions.">
     <title>Stephen Kioko | Software Engineer</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="images/logo.png" type="image/png" />
-    <link rel="apple-touch-icon" href="images/logo.png" />
+    <link rel="icon" href="images/logo.png" type="image/png">
+    <link rel="apple-touch-icon" href="images/logo.png">
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" 
+          integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" 
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- CSS -->
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
     <!-- Open Graph / Social Media Meta Tags -->
-    <meta property="og:title" content="Stephen Kioko | Software Engineer & Machine Learning Specialist" />
-    <meta property="og:description" content="Building systems through code, data, and machine learning." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://stephenkioko.com" />
-    <meta property="og:image" content="https://stephenkioko.com/images/og-image.jpg" />
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:title" content="Stephen Kioko | Software Engineer & Machine Learning Specialist">
+    <meta property="og:description" content="Building systems through code, data, and machine learning.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://stephenkioko.com">
+    <meta property="og:image" content="https://stephenkioko.com/images/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@kioko_steve">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://stephenkioko.com" />
+    <link rel="canonical" href="https://stephenkioko.com">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Stephen Kioko",
+      "jobTitle": "Software Engineer",
+      "url": "https://stephenkioko.com",
+      "sameAs": [
+        "https://github.com/Dakioko",
+        "https://www.linkedin.com/in/kioko-steve/",
+        "https://twitter.com/kioko_steve"
+      ],
+      "description": "Software Engineer specializing in web development, data analysis, and machine learning solutions."
+    }
+    </script>
 </head>
 <body>
     <!-- Skip to Content Link for Accessibility -->
@@ -42,7 +67,8 @@
                     <li><a href="#skills">Skills</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
-                <button class="hamburger" aria-label="Menu" aria-expanded="false">
+                <button class="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="main-nav">
+                    <span class="sr-only">Menu</span>
                     <span></span>
                     <span></span>
                     <span></span>
@@ -57,7 +83,7 @@
                 <div class="hero-content">
                     <h1>Hi, I'm <span class="highlight">Stephen Kioko</span></h1>
                     <h2>Software Engineer</h2>
-                    <p>I use code, data, and machine learning to create impactful solutions that address real-world challenges.</p>
+                    <p>I build data-driven web applications that help businesses make smarter decisions through code, data, and machine learning.</p>
                     <div class="cta-buttons">
                         <a href="#projects" class="btn primary">View My Work</a>
                         <a href="#contact" class="btn secondary">Contact Me</a>
@@ -77,7 +103,7 @@
                     <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
                     <button class="filter-btn" data-filter="web" role="tab" aria-selected="false">Web</button>
                     <button class="filter-btn" data-filter="data" role="tab" aria-selected="false">Data</button>
-                    <button class="filter-btn" data-filter="ML" role="tab" aria-selected="false">ML</button>
+                    <button class="filter-btn" data-filter="productivity" role="tab" aria-selected="false">Desktop</button>
                 </div>
 
                 <div class="projects-grid" id="projects-grid" aria-live="polite">
@@ -230,21 +256,22 @@
                             </a>
                         </div>
                     </div>
-                    <form name = "Vens_Form" class="contact-form" id="contact-form" method="POST" netlify netlify-honeypot="bot-field">
+                    <form name="contact" class="contact-form" id="contact-form" method="POST" netlify>
+                        <input type="hidden" name="form-name" value="contact">
                         <div class="hidden">
                             <label>Don't fill this out: <input name="bot-field"></label>
                         </div>
                         <div class="form-group">
                             <label for="name" class="sr-only">Your Name</label>
-                            <input type="text" id="name" name="name" placeholder="Your Name" required />
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
                         </div>
                         <div class="form-group">
                             <label for="email" class="sr-only">Your Email</label>
-                            <input type="email" id="email" name="email" placeholder="Your Email" required />
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
                         </div>
                         <div class="form-group">
                             <label for="subject" class="sr-only">Subject</label>
-                            <input type="text" id="subject" name="subject" placeholder="Subject" />
+                            <input type="text" id="subject" name="subject" placeholder="Subject">
                         </div>
                         <div class="form-group">
                             <label for="message" class="sr-only">Your Message</label>
@@ -263,10 +290,37 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Video Modal -->
+    <div id="video-modal" class="video-modal" aria-hidden="true">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeVideo()" aria-label="Close video modal">&times;</button>
+            <div class="video-container">
+                <iframe id="youtube-iframe" 
+                        title="YouTube video player"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
     <script>
         // Auto-update copyright year
         document.getElementById("current-year").textContent = new Date().getFullYear();
+        
+        // Preload critical resources
+        function preloadImage(url) {
+            const img = new Image();
+            img.src = url;
+        }
+        
+        // Preload hero and about images
+        window.addEventListener('load', function() {
+            preloadImage('images/1.png');
+            preloadImage('images/2.png');
+        });
     </script>
 </body>
 </html>
