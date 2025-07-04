@@ -109,12 +109,12 @@ document.addEventListener('DOMContentLoaded', function() {
             codeUrl: "#"
         },
         {
-            title: "EPL Race Chart",
-            description: "Dynamic Python visualizations that bring football seasons to life — watch teams climb and fall across 38 matchweeks in seconds.",
+            title: "Population Race",
+            description: "Watch 60+ Years of Population Growth in Eastern Africa — From Ethiopia and Kenya’s Surge to Djibouti’s Steady Numbers!",
             category: "data",
-            tags: ["Python", "Pandas", "Matplotlib", "Web Scraping"],
-            image: "/images/race_chart.png",
-            videoId: "ejXOeJgTM9o",
+            tags: ["Python", "Pandas", "Matplotlib", "API"],
+            image: "/images/pop.png",
+            videoId: "fIAYuSzh_aY",
             codeUrl: "#"
         },
         {

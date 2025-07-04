@@ -24,7 +24,7 @@
     --radius-sm: 4px;
     --radius-md: 8px;
     --radius-lg: 16px;
-    --radius-circle: 50%;
+    --radius-circle: 25%;
     
     /* Shadows */
     --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
@@ -938,7 +938,7 @@ footer p {
 }
 
 .close-btn:hover {
-    color: var(--primary-color);
+    outline: 2px solid var(--primary-color);
     transform: rotate(90deg);
 }
 
