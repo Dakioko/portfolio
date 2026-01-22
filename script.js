@@ -100,12 +100,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Project Data with Categories
     const projects = [
         {
-            title: "SCHOOLPro",
-            description: "A streamlined school management system that handles student records, exam reports, fee payments, and instant SMS updates to parents.",
-            category: "Desktop",
-            tags: ["C#", "SQL Server", "SMS Integration"],
-            image: "images/schoolpro.avif",
-            liveUrl: "#",
+            title: "Weather Dashboard",
+            description: "Real-time weather information with 5-day forecast using data from a weather API.",
+            category: "web",
+            tags: ["JavaScript", "API", "CSS3"],
+            image: "images/climate.avif",
+            liveUrl: "https://vendash.netlify.app/",
             codeUrl: "#"
         },
         {
@@ -117,6 +117,16 @@ document.addEventListener('DOMContentLoaded', function() {
             videoId: "fIAYuSzh_aY",
             codeUrl: "#"
         },
+        {
+            title: "SCHOOLPro",
+            description: "A streamlined school management system that handles student records, exam reports, fee payments, and instant SMS updates to parents.",
+            category: "Desktop",
+            tags: ["C#", "SQL Server", "SMS Integration"],
+            image: "images/schoolpro.avif",
+            liveUrl: "#",
+            codeUrl: "#"
+        },
+        
         {
             title: "Climate Finance Watch",
             description: "A Django-powered tool designed to promote transparency and accountability in climate finance in Kenya.",
@@ -144,15 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
             liveUrl: "#",
             codeUrl: "#"
         },
-        {
-            title: "Weather Dashboard",
-            description: "Real-time weather information with 5-day forecast using data from a weather API.",
-            category: "web",
-            tags: ["JavaScript", "API", "CSS3"],
-            image: "images/climate.avif",
-            liveUrl: "https://vendash.netlify.app/",
-            codeUrl: "#"
-        }
+        
     ];
 
     // Render Projects with Filtering and Staggered Animations
