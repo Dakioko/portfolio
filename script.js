@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const projects = [
         {
             title: "Weather Dashboard",
-            description: "Real-time weather information with 5-day forecast using data from a weather API.",
+            description: "Real-time weather information with 5-day forecast using data from the OpenWeatherMap API.",
             category: "web",
             tags: ["JavaScript", "API", "CSS3"],
             image: "images/climate.avif",
