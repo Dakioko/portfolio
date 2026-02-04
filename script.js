@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
             category: "web",
             tags: ["JavaScript", "API", "CSS3"],
             image: "images/climate.avif",
-            liveUrl: "https://vendash.netlify.app/",
+            liveUrl: "https://horizonviewer.netlify.app/",
             codeUrl: "#"
         },
         {
